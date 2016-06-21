@@ -1,5 +1,6 @@
 package com.distinct.tamyg.twitterclient.main.ui;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,9 @@ import android.view.MenuItem;
 
 import com.distinct.tamyg.twitterclient.LoginActivity;
 import com.distinct.tamyg.twitterclient.R;
+import com.distinct.tamyg.twitterclient.hashtags.HashtagFragment;
+import com.distinct.tamyg.twitterclient.images.ImagesFragment;
+import com.distinct.tamyg.twitterclient.main.ui.adapters.MainSectionsPageAdapter;
 import com.twitter.sdk.android.Twitter;
 
 import butterknife.Bind;
@@ -23,14 +27,29 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.tabs)
     TabLayout tabs;
     @Bind(R.id.container)
-    ViewPager container;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
+        setupAdapter();
+    }
+
+    private void setupAdapter() {
+        android.support.v4.app.Fragment[] fragments =
+                new android.support.v4.app.Fragment[]{new ImagesFragment(), new HashtagFragment()};
+
+        String[] titles = new String[]{getString(R.string.main_header_images),getString(R.string.main_header_hashtags)};
+
+        MainSectionsPageAdapter adapter = new MainSectionsPageAdapter(getSupportFragmentManager(),
+                                            titles,fragments);
+
+        viewPager.setAdapter(adapter);
+        tabs.setupWithViewPager(viewPager);
     }
 
     @Override
