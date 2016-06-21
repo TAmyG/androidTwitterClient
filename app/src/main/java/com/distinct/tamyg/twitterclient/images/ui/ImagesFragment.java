@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,17 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.distinct.tamyg.twitterclient.R;
+import com.distinct.tamyg.twitterclient.TwitterClientApp;
 import com.distinct.tamyg.twitterclient.entities.Image;
 import com.distinct.tamyg.twitterclient.images.ImagesPresenter;
+import com.distinct.tamyg.twitterclient.images.di.ImagesComponent;
 import com.distinct.tamyg.twitterclient.images.ui.adapters.ImagesAdapter;
 import com.distinct.tamyg.twitterclient.images.ui.adapters.OnItemClickListener;
+import com.twitter.sdk.android.core.TwitterApiClient;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,8 +41,10 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
     @Bind(R.id.container)
     FrameLayout container;
 
-    private ImagesAdapter adapter;
-    private ImagesPresenter presenter;
+    @Inject
+     ImagesAdapter adapter;
+    @Inject
+    ImagesPresenter presenter;
 
 
     public ImagesFragment() {
@@ -48,7 +56,21 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         ButterKnife.bind(this, view);
+        setupInjection();
+        setupRecyclerView();
+        presenter.getImageTweets();
         return view;
+    }
+
+    private void setupRecyclerView() {
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void setupInjection() {
+        TwitterClientApp app = (TwitterClientApp)getActivity().getApplication();
+        ImagesComponent imagesComponent = app.getImagesComponent(this, this, this);
+        imagesComponent.inject(this);
     }
 
     @Override

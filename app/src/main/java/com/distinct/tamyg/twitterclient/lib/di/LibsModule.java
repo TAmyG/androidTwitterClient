@@ -1,6 +1,8 @@
 package com.distinct.tamyg.twitterclient.lib.di;
 
-import android.app.Fragment;
+
+
+import android.support.v4.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
