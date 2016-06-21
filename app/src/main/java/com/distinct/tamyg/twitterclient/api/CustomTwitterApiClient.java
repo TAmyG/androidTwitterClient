@@ -4,10 +4,6 @@ import android.content.Context;
 
 import com.twitter.sdk.android.core.Session;
 import com.twitter.sdk.android.core.TwitterApiClient;
-import com.twitter.sdk.android.core.TwitterCore;
-
-import io.fabric.sdk.android.Fabric;
-import io.fabric.sdk.android.Kit;
 
 /**
  * Created by tamyg on 17/06/16.
