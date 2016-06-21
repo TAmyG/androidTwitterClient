@@ -1,6 +1,5 @@
 package com.distinct.tamyg.twitterclient.main.ui;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -13,7 +12,7 @@ import android.view.MenuItem;
 import com.distinct.tamyg.twitterclient.LoginActivity;
 import com.distinct.tamyg.twitterclient.R;
 import com.distinct.tamyg.twitterclient.hashtags.HashtagFragment;
-import com.distinct.tamyg.twitterclient.images.ImagesFragment;
+import com.distinct.tamyg.twitterclient.images.ui.ImagesFragment;
 import com.distinct.tamyg.twitterclient.main.ui.adapters.MainSectionsPageAdapter;
 import com.twitter.sdk.android.Twitter;
 
