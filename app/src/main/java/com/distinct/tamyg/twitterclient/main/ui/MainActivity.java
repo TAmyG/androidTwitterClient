@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.distinct.tamyg.twitterclient.LoginActivity;
 import com.distinct.tamyg.twitterclient.R;
-import com.distinct.tamyg.twitterclient.hashtags.HashtagFragment;
+import com.distinct.tamyg.twitterclient.hashtags.ui.HashtagFragment;
 import com.distinct.tamyg.twitterclient.images.ui.ImagesFragment;
 import com.distinct.tamyg.twitterclient.main.ui.adapters.MainSectionsPageAdapter;
 import com.twitter.sdk.android.Twitter;
